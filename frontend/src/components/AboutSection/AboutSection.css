@@ -1,0 +1,204 @@
+.about {
+  position: relative;
+  z-index: 10;
+}
+
+/* Grid */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Text column */
+.about__text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about__feature-card {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.about__feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow-purple);
+}
+
+.about__feature-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.6));
+}
+
+.about__feature-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.about__feature-desc {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Visual column */
+.about__visual-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Planet */
+.about__planet-visual {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__planet-core {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #7c3aed, #1e1b4b);
+  box-shadow:
+    0 0 30px rgba(124, 58, 237, 0.6),
+    0 0 80px rgba(124, 58, 237, 0.2),
+    inset 0 0 20px rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
+.about__planet-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid;
+  pointer-events: none;
+}
+
+.about__planet-ring--1 {
+  width: 160px;
+  height: 160px;
+  border-color: rgba(6, 182, 212, 0.3);
+  animation: spin-ccw 10s linear infinite;
+}
+
+.about__planet-ring--2 {
+  width: 210px;
+  height: 210px;
+  border-color: rgba(124, 58, 237, 0.2);
+  animation: spin-cw 16s linear infinite;
+  border-style: dashed;
+}
+
+.about__planet-satellite {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f59e0b, #d97706);
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.8);
+  animation: satellite-orbit 10s linear infinite;
+  top: 2px;
+  left: 50%;
+  margin-left: -8px;
+  transform-origin: 8px 108px;
+}
+
+@keyframes satellite-orbit {
+  from { transform: rotate(0deg) translateX(-50%); }
+  to { transform: rotate(360deg) translateX(-50%); }
+}
+
+@keyframes spin-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-ccw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Info cards */
+.about__info-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+.about__info-card {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem 1.25rem;
+  transition: transform var(--transition-normal);
+}
+
+.about__info-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.about__info-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.about__info-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.about__info-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+  .about__visual-col {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .about__planet-visual {
+    width: 160px;
+    height: 160px;
+  }
+  .about__planet-core { width: 70px; height: 70px; }
+  .about__planet-ring--1 { width: 120px; height: 120px; }
+  .about__planet-ring--2 { width: 155px; height: 155px; }
+}
+
+@media (max-width: 600px) {
+  .about__info-cards {
+    grid-template-columns: 1fr;
+  }
+  .about__visual-col {
+    flex-direction: column;
+    align-items: center;
+  }
+}

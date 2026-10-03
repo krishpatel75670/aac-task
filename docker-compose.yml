@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+
+  # ── PostgreSQL ────────────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: astrofest_db
+    restart: unless-stopped
+    env_file: ./backend/.env          # reads POSTGRES_* vars from backend/.env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-astrofest_db}
+      POSTGRES_USER: ${POSTGRES_USER:-astrofest}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - astrofest_network
+
+  # ── FastAPI Backend ───────────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: astrofest_backend
+    restart: unless-stopped
+    env_file: ./backend/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - astrofest_network
+
+  # ── React Frontend ────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: astrofest_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - astrofest_network
+
+volumes:
+  postgres_data:
+
+networks:
+  astrofest_network:
+    driver: bridge

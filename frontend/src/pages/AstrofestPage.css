@@ -1,0 +1,10 @@
+.astrofest-page {
+  min-height: 100vh;
+  position: relative;
+  background: var(--gradient-hero);
+}
+
+.astrofest-main {
+  position: relative;
+  z-index: 10;
+}

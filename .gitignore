@@ -1,0 +1,51 @@
+# .gitignore
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# Build outputs
+dist/
+build/
+.vite/
+
+# Environment (NEVER commit secrets)
+.env
+.env.local
+.env.*.local
+backend/.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+*.egg
+venv/
+.venv/
+env/
+
+# SQLite dev database
+*.db
+*.sqlite3
+
+# Alembic generated (keep alembic.ini, ignore auto-generated env.py override)
+alembic/versions/*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Logs
+*.log
+logs/
