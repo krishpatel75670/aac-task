@@ -32,7 +32,7 @@ app.add_middleware(
 )
 
 # ── Routers ───────────────────────────────────────────────────────────────────
-app.include_router(registrations.router, prefix="api/v1")
+app.include_router(registrations.router, prefix="/api/v1")
 
 
 # ── Health check ──────────────────────────────────────────────────────────────
